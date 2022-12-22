@@ -46,4 +46,3 @@ $ yarn serve
 ### 질문
 
 궁금하신 부분은 강의 내 질문 & 답변 게시판을 이용해주시길 바랍니다.
-# performance-optimization

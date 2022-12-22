@@ -20,5 +20,4 @@ function CodeBlock(props) {
   )
 }
 
-//markdown 렌더링을 도와주는 컴포넌트
 export default CodeBlock
