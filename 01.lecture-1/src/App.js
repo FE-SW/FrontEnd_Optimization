@@ -71,7 +71,7 @@ export default App;
 //* webpack-bundle-analyzer: 웹팩을 통해 번들링된 파일이 어떤 코드로 구성됬는지 알려줌
 //기본 webpack bundle analyzer 사용할경우 CRA를 eject를 하거나 webpack config를 custom 할 수 있는 라이브러리를 설치해야되는데 번거러운 작업임
 //따라서 webpack config를 custom하지 않아도 사용할 수 있는 cra-bundle-analyzer 를 사용 -> 명령어 npx cra-bundle-analyzer
-//특정 모듈이 크다면 -> package-lock.json(모듈의 디펜던시를 표시해주는 파일)에서 검색
+//특정 번들파일 사이즈가 크다면 -> package-lock.json(모듈의 디펜던시를 표시해주는 파일)에서 검색
 //해당 프로젝트의 경우 react-syntax-highlighter가 유의미하게 컸는데 , 이 모듈은 마크다운의 텍스트를 하이라이트 해주는 라이브러리다
 //이 문제점은 페이지 별로 코드를 분리시키고, 필요할떄만 불러오면 된다(code splitting, lazy loading 시용)
 
