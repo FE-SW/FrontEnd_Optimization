@@ -40,14 +40,18 @@ const Count = styled.span`
     flex: 0 0 auto;
 `
 const BarGraph = styled.div`
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: ${({width}) => width}%;
-    transition: width 1.5s ease;
-    height: 100%;
-    background: ${({isSelected}) => isSelected ? 'rgba(126, 198, 81, 0.7)' : 'rgb(198, 198, 198)'};
-    z-index: 1;
-`
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* width: ${({ width }) => width}%; */
+  width: 100%;
+  transform: scaleX(${({ width }) => width / 100}); //reflow,repaint 하지않은 에니메이션 사용(GPU:transform,opacity)
+  transform-origin: center left;
+  transition: transform 1.5s ease; //width 1.5s ease -> transform 1.5s ease
+  height: 100%;
+  background: ${({ isSelected }) =>
+    isSelected ? "rgba(126, 198, 81, 0.7)" : "rgb(198, 198, 198)"};
+  z-index: 1;
+`;
 
 export default Bar
