@@ -19,10 +19,15 @@ function App() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    LazyImageModal.preload();
+    // const component = import("./components/ImageModal")
+    LazyImageModal.preload(); //componenet preloading: 모달제외 모든컴포넌트가 load된 후 모달컴포넌트를 load(component didmonunt)
+    
+    const img = new Image() //image preloading: 모달 속 이미지 preloading
+    img.src = 'img url' //이미지파일은 캐싱됨
+
   }, []);
 
-  const handleMouseEnter = ()=>{
+  const handleMouseEnter = ()=>{ //모달 버튼에 마우스가 올라갔을때 import
     const component = import("./components/ImageModal")
   }
 
