@@ -16,10 +16,10 @@ function Card(props) {
       });
     };
     const options = {
-		// root: document.querySelector('#scrollArea'),
-		// rootMargin: '0px',
-		// threshold: 1.0
-	};
+      // root: document.querySelector('#scrollArea'),
+      // rootMargin: '0px',
+      // threshold: 1.0
+    };
 
     const observer = new IntersectionObserver(callback, options); //(observer생성+view에 보였을때+view에 사라졌을때) 총 3번 호출됨
     observer.observe(imgRef.current);
@@ -27,7 +27,11 @@ function Card(props) {
 
   return (
     <div className="Card text-center">
-      <img data-src={props.image} ref={imgRef} />
+      <picture>
+        <source srcset={props.webp} type="image/webp" />{" "}
+        {/*webp지원하는 브라우저면 webp를 적용하고 아니면 img태그의 확장자 적용 */}
+        <img data-src={props.image} ref={imgRef} />
+      </picture>
       <div className="p-5 font-semibold text-gray-700 text-xl md:text-lg lg:text-xl keep-all">
         {props.children}
       </div>
