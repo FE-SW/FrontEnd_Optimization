@@ -10,7 +10,8 @@ function Card(props) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           //화면에 entry가 들어오면
-          entry.target.src = entry.target.dataset.src; //entry.targe === img element
+          entry.target.src = entry.target.dataset.src; //entry.target === img element
+          entry.target.previosSibling.srcset = entry.target.dataset.src; //entry.target.previosSibling === source element
           observer.unobserve(entry.target); //이미지 로드가 완료됐으면 observe 해제
         }
       });
@@ -28,7 +29,7 @@ function Card(props) {
   return (
     <div className="Card text-center">
       <picture>
-        <source srcset={props.webp} type="image/webp" />{" "}
+        <source data-srcset={props.webp} type="image/webp" />{" "}
         {/*webp지원하는 브라우저면 webp를 적용하고 아니면 img태그의 확장자 적용 */}
         <img data-src={props.image} ref={imgRef} />
       </picture>
@@ -40,3 +41,5 @@ function Card(props) {
 }
 
 export default Card;
+
+//https://squoosh.app/ webp변환 사이트
