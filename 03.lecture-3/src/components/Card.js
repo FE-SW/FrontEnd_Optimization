@@ -16,6 +16,7 @@ function Card(props) {
         }
       });
     };
+    
     const options = {
       // root: document.querySelector('#scrollArea'),
       // rootMargin: '0px',
