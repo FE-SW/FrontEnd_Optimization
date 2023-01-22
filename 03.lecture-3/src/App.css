@@ -4,9 +4,20 @@
 
 @font-face {
 	font-family: BMYEONSUNG;
-	src: url('./assets/fonts/BMYEONSUNG.ttf');
+	src: local('BMYEONSUNG') /* 만약 pc에 폰트가 있다면 적용 */
+		url('./assets/fonts/BMYEONSUNG.woff2') format('woff2'),/* format: 폰트 포맷 */
+		url('./assets/fonts/BMYEONSUNG.woff') format('woff'),/* 지원하지 않는 브라우저를 위해 */
+		url('./assets/fonts/BMYEONSUNG.ttf') format('truetype');
+	font-display: block;/* 폰트적용 시점 컨트롤 // 폰트파일 preload하면 필요없음 */
+	unicode-range: 'u+0041, u+0042, u+0043, u+0044, u+0045, u+0047, u+0049, u+004b, u+004c, u+004d, u+004e, u+004f, u+0050, u+0052'; /* 지정한 range에서만 폰트가 로드됨*/
 }
 
 .BannerVideo {
 	font-family: 'BMYEONSUNG', sans-serif;
 }
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display */
+/* https://transfonter.org :폰트 변환 사이트 */
+/* convert: 사용할 특정문자만 추출해서 폰트파일을 만드는것(폰트파일 사이즈가 줄어듬) */
+/* data-uri: 폰트파일을 호출하는게 아닌, css에 폰트파일이 합쳐진형태 -> 네트워크 리소스 줄어듬(base64 인코딩) */
+/* react-app-rewired: cra프로젝트 재구성해주는 라이브러리*/
+/* preload-webpack-plugin: preaload설정을 해주는 플러그인*/

@@ -28,3 +28,5 @@ function App() {
 }
 
 export default App
+
+// npx serve ./build 빌드된파일 실행
