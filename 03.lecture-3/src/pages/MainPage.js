@@ -7,6 +7,7 @@ import Meta from "../components/Meta";
 import main1 from "../assets/main1.jpg";
 import main2 from "../assets/main2.jpg";
 import main3 from "../assets/main3.jpg";
+import webp from '../assets/part/truck1.webp'
 import main_items from "../assets/main-items.jpg";
 import main_parts from "../assets/main-parts.jpg";
 import main_styles from "../assets/main-styles.jpg";
@@ -18,13 +19,13 @@ function MainPage(props) {
       <div className="mx-auto">
         <ThreeColumns
           columns={[
-            <Card webp={main1} image={main1}>
+            <Card webp={webp} image={main1}>
               롱보드는 아주 재밌습니다.
             </Card>,
-            <Card webp={main1} image={main2}>
+            <Card webp={webp} image={main2}>
               롱보드를 타면 아주 신납니다.
             </Card>,
-            <Card webp={main1} image={main3}>
+            <Card webp={webp} image={main3}>
               롱보드는 굉장히 재밌습니다.
             </Card>,
           ]}
