@@ -30,3 +30,4 @@ function App() {
 export default App
 
 // npx serve ./build 빌드된파일 실행
+// https://purgecss.com/: html,js 문자열을 추출한뒤 css 있는 클레스네임과 비교해 포함되어있지 않다면 해당 클레스를 전부 제거함 
