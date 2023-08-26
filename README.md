@@ -1,7 +1,7 @@
 # 성능 최적화 정리
 
 ## 로딩 성능 & 랜더링 성능
-프론트엔드 성능 개선과 관련해서 크게 두가지로 나뉘는데 바로 로딩 성능과 랜더링 성능이다
+프론트엔드 성능 개선과 관련해서 크게 두가지로 나뉘는데, 바로 로딩 성능과 랜더링 성능이다
 <br/>
 
 1. 로딩 성능:
@@ -9,7 +9,7 @@
 로딩 성능 최적화의 핵심은 불필요한 자원의 로드를 최소화하고, 필요한 자원을 효과적으로 우선순위를 부여하여 빠르게 로드하는 것이다.
 
 2. 랜더링 성능:
-웹 페이지나 앱이 사용자의 상호작용에 얼마나 빠르게 반응하며, 원활하게 동작하는지에 관련된 성능이다.<br/>
+웹 페이지나 앱이 사용자의 상호작용에 얼마나 빠르게 반응하며, 원활하게 동작하는지에 관련된 성능이다.
 랜더링 성능 최적화의 핵심은 불필요한 렌더링을 방지하고, 복잡한 연산이나 애니메이션을 효과적으로 처리하여 원활한 사용자 경험을 제공하는 것이다.
 
 ## 실습 내용
@@ -200,7 +200,7 @@ code splitting이란 말 그대로 코드를 분할하고 작은 사이지로 �
 ![3](https://github.com/FE-SW/vue2_tutorial/assets/54196723/1a01cd5e-546c-4f7d-88a3-4dc4f0234cb1)
 
 ```java
-[페이지별 분할 (Route-based code splitting)]:
+#### [페이지별 분할 (Route-based code splitting)]:
 
 이 방법은 웹 어플리케이션의 각 페이지(또는 라우트)마다 별도의 코드 번들을 생성한다.
 예를 들어, 사용자가 홈페이지를 방문했을 때, 홈페이지와 관련된 코드만 로드돤다. 사용자가 다른 페이지(예: 상세 페이지)로 이동하면 그때 그 페이지와 관련된 코드가 로드된다.
@@ -210,7 +210,7 @@ React에서는 React.lazy()와 Suspense를 사용하여 라우트 기반 코드 
 
 
 ```java
-[모듈별 분할 (Component-based code splitting)]:
+#### [모듈별 분할 (Component-based code splitting)]:
 
 모듈별 분할은 특정 컴포넌트나 라이브러리를 별도의 번들로 분리하는 것을 의미한다.
 예를 들어, 대형 라이브러리(예: 차트 라이브러리)를 사용하는 한 페이지만 있다면, 그 라이브러리는 해당 페이지에서만 필요하므로 별도의 번들로 분리하는 것이 효과적이다.
@@ -280,5 +280,111 @@ export default App;
 
 상세페이지에 들어갔을경우 데이터를 추가적으로 불러오는것을 확인할 수 있다.
 
+<br/>
+
+하지만 Code Splitting과 Lazy Loading은 웹사이트의 성능을 개선하기 위한 전략 중 하나이지만, 아래와 같이 몇몇 단점들도 존재할 수 있다.
+
+#### [주의할점]
+
+1.동적 로딩에 의한 지연: Lazy Loading을 사용하면, 필요한 모듈이나 컴포넌트를 실제로 사용할 때까지 로딩을 미루게 됩니다. 이로 인해, 사용
+자가 해당 페이지나 기능에 처음 접근할 때 약간의 지연이 발생할 수 있다. 즉, 사용자가 특정 페이지나 기능을 요청하면 그 때서야 필요한 코드를 로드하고 렌더링하는 과정을 거치므로, 사용자는 이 과정 동안의 대기 시간을 경험하게 된다.
+
+2.네트워크 불안정성: 사용자의 네트워크 연결이 불안정할 경우, Lazy Loading으로 인해 중요한 컴포넌트나 기능의 로딩이 실패할 수 있다. 페이지나 기능에 접근할 때마다 필요한 코드를 요청하므로, 네트워크 연결의 질에 더 의존하게 된다.
+
+3.캐싱의 제한: 전체 번들이 아닌 개별 번들을 로딩하기 때문에, 일부 브라우저 캐싱 전략을 최적화하는 데 어려움이 있을 수 있다.
+
+4.페이지간 이동 지연: 사용자가 페이지 간에 빠르게 이동할 경우, 매번 새로운 코드 조각을 로드해야 하므로 사용자 경험이 떨어질 수 있다. 특히, 초기 로딩 속도는 빨라지겠지만 페이지를 이동할 때마다 동적 import와 렌더링 과정을 겪게 되므로, 이러한 지연으로 인해 사용자의 경험이 부드럽지 않을 수 있다.
+
+5.추가적인 설정과 복잡성: Code Splitting과 Lazy Loading을 구현하기 위해서는 웹팩, 라우터 등의 도구와 라이브러리에 대한 추가적인 설정이 필요할 수 있다. 이로 인해 프로젝트의 복잡성이 증가할 수 있다.
+
+
+따라서 Code Splitting과 Lazy Loading 최적화는 무조건 설정해서 좋은것이 아닌 당시 개발상황과 웹사이트를 분석하고 적절할때만 사용하는것이 좋다.
+특히 초기로드속도와 사용자경험이 Trdae Off 관계라는것을 명심해야 된다.
+
+
+
+#### [참고]
+* https://webpack.js.org/guides/code-splitting/
+* https://ko.legacy.reactjs.org/docs/code-splitting.html
+
 
 ### 텍스트 압축
+
+지금까지 개발환경에서 실행된 사이트의 성능측정과 최적화 작업을 진행했다.하지만 개발환경과 실서비스환경은 차이점이 있다. <br/>
+예를들어 서비스환경에서는 웹팩의 minify 등의 기능이 추가적으로 적용된다.
+
+빌드된 파일을 실행시키고 Lighthouse를 실행시켜보면, opprtunities 항목에 개발환경때는 없었던 Enable text compression 이라는 문구가 등장한다.
+
+웹사이트의 로딩 속도는 사용자 경험(UX)에 중요한 역할을 한. 특히 대용량의 HTML, CSS, JS 파일은 로드 시간을 늘리게 하는데,
+이런 문제를 완화하기 위한 방법 중 하나는 텍스트 기반의 리소스를 압축하는 것이다.
+
+<br/>
+
+#### [Gzip]: <br/>
+gzip은 가장 널리 사용되는 압축 방식 중 하나로, 대용량의 텍스트 파일을 효과적으로 압축할 수 있다. 서버는 이러한 파일들을 압축한 상태로 클라이언트(브라우저)에게 전송하게 되며, 이렇게 압축된 파일은 데이터 전송 시간을 크게 줄일 수 있다.
+그러나, 브라우저에서는 이 압축된 리소스를 실제로 사용하기 전에 압축을 해제하는 과정이 필요하다. 이 과정은 추가적인 처리 시간을 필요로 한다. 따라서 용량이 작은 파일은 압축을 하지않는것이 더욱 효율적일 수 있다.(파일이 크냐 작냐의 기준: 파일크기 2KB)
+
+
+빌드된 사이트의 네트워크탭에 들어가보면 api로 받아오는 json 데이터는 Content-Encoding:Gzip 설정이 되어있지만, bundle된 파일을 보면 빠져있다는것을 확인할 수 있다.
+pack.json파일을 들어가 빌드된파일을 실생시키는 스크립트 명령어를 살펴보니
+
+```java
+"serve": "npm run build && node ./node_modules/serve/bin/serve.js -u -s build",
+```
+라고 되어있다. 따라서  u와s가 어떤 명령어옵션인지 살펴보기 위해 help 명령어를 콘솔창에 입력해보면
+
+```java
+node ./node_modules/serve/bin/serve.js --help
+```
+
+```java
+serve - Static file serving and directory listing
+
+  USAGE
+
+      $ serve --help
+      $ serve --version
+      $ serve folder_name
+      $ serve [-l listen_uri [-l ...]] [directory]
+
+      By default, serve will listen on 0.0.0.0:5000 and serve the
+      current working directory on that address.
+
+      Specifying a single --listen argument will overwrite the default, not supplement it.
+
+  OPTIONS
+
+      --help                              Shows this help message
+
+      -v, --version                       Displays the current version of serve
+
+      -l, --listen listen_uri             Specify a URI endpoint on which to listen (see below) -
+                                          more than one may be specified to listen in multiple places
+
+      -d, --debug                         Show debugging information
+
+      -s, --single                        Rewrite all not-found requests to `index.html`
+
+      -c, --config                        Specify custom path to `serve.json`
+
+      -n, --no-clipboard                  Do not copy the local address to the clipboard
+
+      -u, --no-compression                Do not compress files
+
+      --no-etag                           Send `Last-Modified` header instead of `ETag`
+
+      -S, --symlinks                      Resolve symlinks instead of showing 404 errors
+
+      --ssl-cert                          Optional path to an SSL/TLS certificate to serve with HTTPS
+
+      --ssl-key                           Optional path to the SSL/TLS certificate's private key
+```
+
+OPTIONS부분에 보면 u옵션은 실행시 압축을 생략하는 명령어라고 볼 수 있다.
+
+따라서 해당 u옵션을 빼고 새로 빌드된 파일을 실행시 압축과정이 적용된다는것을 알 수 있다.
+
+
+![123123123](https://github.com/FE-SW/vue2_tutorial/assets/54196723/bcd1e7d9-97e1-4ea7-b91b-357999c698b1)
+
+
