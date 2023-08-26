@@ -271,7 +271,7 @@ export default App;
 
 <br/> <br/>
 
-
+#### [네트워크 탭]
 ![cc](https://github.com/FE-SW/vue2_tutorial/assets/54196723/124b0c70-62ef-481d-b021-8938ae50fca0)
 
 네트워크 탭에서 확인해보면, 메인페이지에서는 이만큼 데이터를 불러왔다면<br/>
