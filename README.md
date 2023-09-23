@@ -61,7 +61,7 @@ Resource size: 해당 파일 용량 / Potential savings :최적화했을때 절�
 실제 렌더링되는 사이즈보다 넓이 기준으로 2배정도 큰 이미지를 사용하는게 최선인데, 해당 코드를 수정하면 다음과 같다.
 
 
-```java
+```javascript
       <div className={"Article__thumbnail"}>
         <img
           src={
@@ -100,7 +100,7 @@ opprtunities항목을 보면 자바스크립트 코드를 최소화하고, 불�
 Article 컴포넌트를 확대시키면 removeSpecialCharacter 작업이 대다수의 작업시간을 잡아먹는중인것을 알 수 있다.
 이제 removeSpecialCharacter 를 수정하면 성능최적화가 가능하다라는것을 파악했다.
 
-```java
+```javascript
 /* 파라미터로 넘어온 문자열에서 일부 특수문자를 제거하는 함수(Markdown으로 된 문자열의 특수문자를 제거하기 위함 */
 
 /*문제의 코드 */
@@ -124,7 +124,7 @@ function removeSpecialCharacter(str) {
 
 ```
 
-```java
+```javascript
 /* 파라미터로 넘어온 문자열에서 일부 특수문자를 제거하는 함수(Markdown으로 된 문자열의 특수문자를 제거하기 위함 */
 
 /*최적화된 코드 */
@@ -225,7 +225,7 @@ React에서도 React.lazy()를 사용하여 특정 컴포넌트를 동적으로 
 하지만 우리는 CRA를 통해 기본적인 웹팩 설정이 잘되어있다. code splitting코드만 작성하면 된다.
 
 
-```java
+```javascript
 import React, { Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -328,16 +328,16 @@ gzip은 가장 널리 사용되는 압축 방식 중 하나로, 대용량의 텍
 빌드된 사이트의 네트워크탭에 들어가보면 api로 받아오는 json 데이터는 Content-Encoding:Gzip 설정이 되어있지만, bundle된 파일을 보면 빠져있다는것을 확인할 수 있다.
 pack.json파일을 들어가 빌드된파일을 실생시키는 스크립트 명령어를 살펴보니
 
-```java
+```javascript
 "serve": "npm run build && node ./node_modules/serve/bin/serve.js -u -s build",
 ```
 라고 되어있다. 따라서  u와s가 어떤 명령어옵션인지 살펴보기 위해 help 명령어를 콘솔창에 입력해보면
 
-```java
+```javascript
 node ./node_modules/serve/bin/serve.js --help
 ```
 
-```java
+```javascript
 serve - Static file serving and directory listing
 
   USAGE
