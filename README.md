@@ -19,9 +19,13 @@
 * Code Split & Lazy Loading
 * 텍스트 압축
 * Bundle 파일 분석
+* 컴포넌트 Code Splitting & Lazy Loading
 
 [랜더링 성능 최적화]
 * Bottleneck 코드 최적화
+* 애니메이션 최적화 (Reflow, Repaint)
+* 컴포넌트 Preloading
+* 이미지 Preloading
 
 ## 분석 툴
 
@@ -139,7 +143,7 @@ function removeSpecialCharacter(str) {
 * 문제점1: 특수 문자 효율적으로 제거: for,while -> 1.문자열 프로토타입 메서드인 substring,replace와 정규식사용 or 마크다운 특수문자를 지워주는 라이브러리 사용(remove-markdown)
 * 문제점2: 작업하는 양 줄이기:  api로 제공하는 마크다운의경우 최대 9만자까지 늘어남 -> 300자로 제한
 
-### Bundle 파일 분석
+## Bundle 파일 분석
 
 ![다운로드 (8)](https://github.com/FE-SW/vue2_tutorial/assets/54196723/c417522d-bf41-4880-b0ed-cc87e9cd8826)
 
@@ -173,7 +177,7 @@ bundle analyzer를 통해 bundle파일이 해석되서 나온다. 위에 가장�
 해당 bundle파일을 분석해 용량이 큰 모듈을 찾아 제거하거나 최적화된 방법을 찾아서 수정해주면 된다.
 
 
-### Code Splitting & Lazy Loading
+## Code Splitting & Lazy Loading
 
 Code Splitting은 리액트 애플리케이션의 번들 크기를 줄이기 위해 필요한 코드만 따로 분리하여 로드하는 기법이다.<br/>
 React.lazy()와 Suspense를 활용하여 컴포넌트 수준에서 지연 로딩을 구현할 수 있으며, <br/>
@@ -200,7 +204,7 @@ code splitting이란 말 그대로 코드를 분할하고 작은 사이지로 �
 ![3](https://github.com/FE-SW/vue2_tutorial/assets/54196723/1a01cd5e-546c-4f7d-88a3-4dc4f0234cb1)
 
 ```java
-#### [페이지별 분할 (Route-based code splitting)]:
+### [페이지별 분할 (Route-based code splitting)]:
 
 이 방법은 웹 어플리케이션의 각 페이지(또는 라우트)마다 별도의 코드 번들을 생성한다.
 예를 들어, 사용자가 홈페이지를 방문했을 때, 홈페이지와 관련된 코드만 로드돤다. 사용자가 다른 페이지(예: 상세 페이지)로 이동하면 그때 그 페이지와 관련된 코드가 로드된다.
@@ -210,7 +214,7 @@ React에서는 React.lazy()와 Suspense를 사용하여 라우트 기반 코드 
 
 
 ```java
-#### [모듈별 분할 (Component-based code splitting)]:
+### [모듈별 분할 (Component-based code splitting)]:
 
 모듈별 분할은 특정 컴포넌트나 라이브러리를 별도의 번들로 분리하는 것을 의미한다.
 예를 들어, 대형 라이브러리(예: 차트 라이브러리)를 사용하는 한 페이지만 있다면, 그 라이브러리는 해당 페이지에서만 필요하므로 별도의 번들로 분리하는 것이 효과적이다.
@@ -271,7 +275,7 @@ export default App;
 
 <br/> <br/>
 
-#### [네트워크 탭]
+### [네트워크 탭]
 ![cc](https://github.com/FE-SW/vue2_tutorial/assets/54196723/124b0c70-62ef-481d-b021-8938ae50fca0)
 
 네트워크 탭에서 확인해보면, 메인페이지에서는 이만큼 데이터를 불러왔다면<br/>
@@ -284,7 +288,7 @@ export default App;
 
 하지만 Code Splitting과 Lazy Loading은 웹사이트의 성능을 개선하기 위한 전략 중 하나이지만, 아래와 같이 몇몇 단점들도 존재할 수 있다.
 
-#### [주의할점]
+### [주의할점]
 
 1.동적 로딩에 의한 지연: Lazy Loading을 사용하면, 필요한 모듈이나 컴포넌트를 실제로 사용할 때까지 로딩을 미루게 됩니다. 이로 인해, 사용
 자가 해당 페이지나 기능에 처음 접근할 때 약간의 지연이 발생할 수 있다. 즉, 사용자가 특정 페이지나 기능을 요청하면 그 때서야 필요한 코드를 로드하고 렌더링하는 과정을 거치므로, 사용자는 이 과정 동안의 대기 시간을 경험하게 된다.
@@ -303,12 +307,12 @@ export default App;
 
 
 
-#### [참고]
+### [참고]
 * https://webpack.js.org/guides/code-splitting/
 * https://ko.legacy.reactjs.org/docs/code-splitting.html
 
 
-### 텍스트 압축
+## 텍스트 압축
 
 지금까지 개발환경에서 실행된 사이트의 성능측정과 최적화 작업을 진행했다.하지만 개발환경과 실서비스환경은 차이점이 있다. <br/>
 예를들어 서비스환경에서는 웹팩의 minify 등의 기능이 추가적으로 적용된다.
@@ -320,7 +324,7 @@ export default App;
 
 <br/>
 
-#### [Gzip]: <br/>
+### [Gzip]: <br/>
 gzip은 가장 널리 사용되는 압축 방식 중 하나로, 대용량의 텍스트 파일을 효과적으로 압축할 수 있다. 서버는 이러한 파일들을 압축한 상태로 클라이언트(브라우저)에게 전송하게 되며, 이렇게 압축된 파일은 데이터 전송 시간을 크게 줄일 수 있다.
 그러나, 브라우저에서는 이 압축된 리소스를 실제로 사용하기 전에 압축을 해제하는 과정이 필요하다. 이 과정은 추가적인 처리 시간을 필요로 한다. 따라서 용량이 작은 파일은 압축을 하지않는것이 더욱 효율적일 수 있다.(파일이 크냐 작냐의 기준: 파일크기 2KB)
 
@@ -383,8 +387,110 @@ serve - Static file serving and directory listing
 OPTIONS부분에 보면 u옵션은 실행시 압축을 생략하는 명령어라고 볼 수 있다.
 
 따라서 해당 u옵션을 빼고 새로 빌드된 파일을 실행시 압축과정이 적용된다는것을 알 수 있다.
-
-
 ![123123123](https://github.com/FE-SW/vue2_tutorial/assets/54196723/bcd1e7d9-97e1-4ea7-b91b-357999c698b1)
 
+## 에니메이션 최적화 (Reflow, Repaint)
+에니메이션 최적화는 웹 페이지나 애플리케이션의 애니메이션 퍼포먼스를 향상시키는 과정이다. 주로 CSS의 transform과 opacity 속성을 사용하여 GPU 가속을 이용하거나, 불필요한 리렌더링을 줄이는 방법으로 정크 현상을 방지하고, 부드러운 애니메이션 표현을 목표로 한다.
 
+### 정크 현상(junk) 
+정크 현상(jank)은 웹 페이지나 애플리케이션에서 애니메이션, 스크롤링, 다른 사용자 인터페이스 동작이 부드럽게 진행되지 않고 끊기는 것을 의미한다. 이 현상은 브라우저가 1초에 60프레임의 속도로 이미지를 렌더링하지 못할 때 발생한다. 해당 현상은 사용자 경험을 저하시키며, 웹사이트나 애플리케이션의 성능 최적화를 해치는 주요 요인 중 하나이다.
+
+### 에니메이션과 브라우저 랜더링
+DOM+CSSOM > Render Tree -> Layout -> Paint -> Composite
+
+에니메이션이 발생하면, 브라우저는 랜더링 과정을 거친다. 이러한 렌더링 과정 중 변경 사항이 발생하면 Repaint와 Reflow가 발생할 수 있으며 차이점은 아래와 같다.
+
+### Reflow
+![1](https://github.com/FE-SW/FrontEnd_Optimization/assets/54196723/1b7a189c-f1f0-472e-aa16-cdf16c3cf72a)
+요소의 크기나 위치가 변경될 때 전체 레이아웃을 다시 계산해야하는 과정이다. 이는 퍼포먼스에 큰 영향을 미칠 수 있으며, 예를 들면 요소의 width, height 변경이나 DOM 추가/삭제가 해당된다.
+Reflow는 브라우저 랜더링 과정 DOM+CSSOM > Render Tree -> Layout -> Paint -> Composite 한 사이클을 전부 돌며 최적화에 가장 치명적이다.
+
+### Repaint
+![2](https://github.com/FE-SW/FrontEnd_Optimization/assets/54196723/25cbfbca-c07b-4cf0-827f-25309827f746)
+웹 페이지의 일부분의 변경으로 인해 해당 부분의 외관이 다시 그려져야 할 때 발생한다. 예를 들면, 텍스트의 색상 변경과 같은 시각적 스타일의 변경이 해당된다.
+Reflow는 브라우저 랜더링 과정을 거치지만 요소의 크기와 위치를 계산하는 Layout 단계를 거치지 않는다. 따라서 Repaint도 빈번하게 발생하면 퍼포먼스에 큰 영향을
+주지만 Reflow만큼 치명적이진 않다.
+
+### Layout & Paint
+브라우저 랜더링 과정중 Layout과 Paint 과정이 시간과 리소스를 많이 소모되는데, 이유는 다음과 같다.<br/>
+
+1.Layout (Reflow):<br/>
+Layout 과정은 페이지의 모든 요소의 크기와 위치를 계산하는 과정이다. 페이지의 일부분만 변경되어도 전체 페이지의 Layout을 다시 계산하는 경우가 있어, 복잡한 페이지 구조에서는 시간이 많이 소요된다.
+
+2.Paint:<br/>
+Paint 과정은 계산된 Layout을 바탕으로 실제 픽셀 값으로 변환하는 작업이다. 그림자, 그라데이션, 이미지 등 복잡한 스타일 요소가 포함될수록 Paint 과정은 더 복잡해지고 시간이 많이 소요된다.
+
+### Reflow, Repaint 피하기
+![3](https://github.com/FE-SW/FrontEnd_Optimization/assets/54196723/15f569e5-64c8-4388-a46b-47aa6980c1c0)
+에니메이션의 최적화 핵심은 Layout과 Paint 과정을 최대한 피하거나 최소화하는 것에 있다. Reflow는 Layout 및 Paint 과정을 모두 거친다. 반면, Repaint는 Layout 과정을 거치지 않지만 Paint 과정은 필요로 한다. 이 두 과정을 피하거나 최소화할려면, GPU의 렌더링을 활용해야 한다. GPU를 사용한 대표적인 css 속성이 바로 transform, opacity 요소이다. 따라서 에니메이션을 구현할때 이 두 요소를 최대한 사용해서 구현해야 최적화를 할 수 있다. 
+
+#### [Reflow 발생 요소]:
+width, height
+padding, padding-*
+margin, margin-*
+border, border-*
+font-size, font-weight, font-family
+text-align, text-transform, letter-spacing, word-spacing
+position, top, right, bottom, left
+float
+display
+overflow, overflow-x, overflow-y
+clear
+z-index
+min-width, max-width, min-height, max-height
+등
+
+#### [Repaint 발생 요소]:
+color
+background-color
+visibility
+text-decoration
+outline-color, outline, outline-width, outline-style, outline-offset
+box-shadow
+border-radius
+등
+
+#### [Reflow, Reflow 발생X 요소]:
+transform
+opacity
+filter
+will-change
+backface-visibility
+perspective
+
+### 예시코드
+![4](https://github.com/FE-SW/FrontEnd_Optimization/assets/54196723/067240cf-f720-49ad-b75b-180a02a1391f)
+
+#### [수정 전]:
+```html
+<div class="box"></div>
+```
+```css
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  transition: width 0.3s ease-out;
+}
+
+.box:hover {
+  width: 200px;
+}
+```
+
+#### [수정 후]:
+```html
+<div class="box"></div>
+```
+```css
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  transition: transform 0.3s ease-out;
+}
+
+.box:hover {
+  transform: scaleX(2);
+}
+```
