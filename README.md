@@ -462,9 +462,6 @@ perspective
 ![4](https://github.com/FE-SW/FrontEnd_Optimization/assets/54196723/067240cf-f720-49ad-b75b-180a02a1391f)
 
 #### [수정 전]:
-```html
-<div class="box"></div>
-```
 ```css
 .box {
   width: 100px;
@@ -479,9 +476,6 @@ perspective
 ```
 
 #### [수정 후]:
-```html
-<div class="box"></div>
-```
 ```css
 .box {
   width: 100px;
