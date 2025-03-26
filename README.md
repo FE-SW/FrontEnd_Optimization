@@ -425,37 +425,37 @@ Paint 과정은 계산된 Layout을 바탕으로 실제 픽셀 값으로 변환�
 에니메이션의 최적화 핵심은 Layout과 Paint 과정을 최대한 피하거나 최소화하는 것에 있다. Reflow는 Layout 및 Paint 과정을 모두 거친다. 반면, Repaint는 Layout 과정을 거치지 않지만 Paint 과정은 필요로 한다. 이 두 과정을 피하거나 최소화할려면, GPU의 렌더링을 활용해야 한다. GPU를 사용한 대표적인 css 속성이 바로 transform, opacity 요소이다. 따라서 에니메이션을 구현할때 이 두 요소를 최대한 사용해서 구현해야 최적화를 할 수 있다. 
 
 #### [Reflow 발생 요소]:
-width, height
-padding, padding-*
-margin, margin-*
-border, border-*
-font-size, font-weight, font-family
-text-align, text-transform, letter-spacing, word-spacing
-position, top, right, bottom, left
-float
-display
-overflow, overflow-x, overflow-y
-clear
-z-index
+width, height,
+padding, padding-*,
+margin, margin-*,
+border, border-*,
+font-size, font-weight, font-family,
+text-align, text-transform, letter-spacing, word-spacing,
+position, top, right, bottom, left,
+float,
+display,
+overflow, overflow-x, overflow-y,
+clear,
+z-index,
 min-width, max-width, min-height, max-height
 등
 
 #### [Repaint 발생 요소]:
-color
-background-color
-visibility
-text-decoration
+color,
+background-color,
+visibility,
+text-decoration,
 outline-color, outline, outline-width, outline-style, outline-offset
-box-shadow
+box-shadow,
 border-radius
 등
 
 #### [Reflow, Reflow 발생X 요소]:
-transform
-opacity
-filter
-will-change
-backface-visibility
+transform,
+opacity,
+filter,
+will-change,
+backface-visibility,
 perspective
 
 ### 예시코드
